@@ -1,0 +1,10 @@
+film.character	count	35191	h	1431	t	34362
+character.film	count	35191	h	34362	t	1431
+film.person	count	604	h	103	t	585
+person.film	count	604	h	585	t	103
+writer.film	count	2373	h	1751	t	1335
+film.written_by	count	2373	h	1335	t	1751
+director.film	count	1723	h	1127	t	1587
+film.directed_by	count	1723	h	1587	t	1127
+film.actor	count	40610	h	1565	t	27193
+actor.film	count	40615	h	27193	t	1565
