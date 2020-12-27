@@ -11,7 +11,7 @@
 其中movie_index与kg_index.tsv中的entity_index,但entity_index不仅包含movie_index,还包括movie以外的实体index。
 
 ## <div id="各文件生成过程说明"></div>各文件生成过程说明
-####1. 整个项目最初的需要有:
+###1. 整个项目最初的需要有:
 
 * 1.1   freebase-rdf-latest.gz<br>
 这是freebase最新版本的所有数据,下载地址为：https://developers.google.com/freebase/
@@ -30,23 +30,23 @@ paper地址：https://www.mitpressjournals.org/doi/full/10.1162/dint_a_00008<br>
 即kb4rec(knowledge base information for recommender system)项目[1]，他们将知识图谱数据与推荐开源数据做了一个连接，ml2fb.txt是他们项目中连接movielens数据集与freebase数据集的文件。
 可在他们的github中获取，获取后放在data_set/easy-fb-kg-movie目录下。(已经下载好放在那了)
 
-####2. 主要的脚本文件都在process文件夹下
+###2. 主要的脚本文件都在process文件夹下
 
 执行顺序如下：
 
 * 2.1 fromFbOrginal2FbKgMovie.py<br>
-输入文件:<br>
+**输入文件:**<br>
 data_set/freebase-orginal/freebase-rdf-latest.gz    原freebase文件，除了movie以外还有很多不需要的内容。<br>
-输出文件:<br>
+**输出文件:**<br>
 data_set/fb-kg-movie/fb_movies.tsv  仅保留freebase中movie的内容<br>
 data_set/fb-kg-movie/names.tsv  仅保留freebase中实体名字的内容<br>
 注意:这个脚本在一般cpu电脑上跑完需要30个小时。
 
 * 2.2 fromFbMovie2easy.py<br> 
-输入文件:<br>
+**输入文件:**<br>
 data_set/fb-kg-movie/fb_movies.tsv  仅保留freebase中movie的内容<br>
 data_set/fb-kg-movie/names.tsv  仅保留freebase中实体名字的内容<br>
-输出文件:<br>
+**输出文件:**<br>
 data_set/fb-kg-movie/paris_count.tsv  统计freebase中movie数据各个关系对应头尾实体数量的文件<br>
 文件结构：[关系名, "count", 此关系下总共的三元组数量, "h", head实体的去重数量, "t", tail实体的去重数量]<br>
 总共7列，打引号的部分在文件中就是呈现那个字符串，用来表示后一列的内容。<br>
@@ -60,10 +60,10 @@ data_set/easy-fb-kg-movie/all_relations_chose.tsv 用作手动筛选关系的文
 注意:为了方便大家快速使用，该步骤的输出文件在该项目中有保存，所以大家可以跳过2.1和2.2步骤。
 
 * 2.3 fromRecOrignal2easy.py<br>
-输入文件:<br>
+**输入文件:**<br>
 ml*/orginal/movies*    原movieslens的movie内容文件。<br>
 ml*/orginal/ratings*    原movieslens的rating内容文件。<br>
-输出文件:<br>
+**输出文件:**<br>
 ml*/easy-rec/ml_movieids.json   只剩movie id的json文件<br>
 ml*/easy-rec/ratings.tsv    干净一点的ratings文件<br>
 注意:该脚本的目的就是把原movielens的数据集统一格式。<br>
