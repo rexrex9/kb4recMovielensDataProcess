@@ -131,9 +131,4 @@ dmypy.json
 /data_set/fb-kg-movie/fb_movies.tsv
 /data_set/fb-kg-movie/names.tsv
 /data_set/fb-kg-movie/paris_count.tsv
-/data_set/easy-fb-kg-movie/all_relations.tsv
-/data_set/easy-fb-kg-movie/all_relations_chose.tsv
-/data_set/easy-fb-kg-movie/fb_entity_names.tsv
-/data_set/easy-fb-kg-movie/fb_entity_types.tsv
-/data_set/easy-fb-kg-movie/fb_movies.tsv
-/data_set/easy-fb-kg-movie/paris_count.tsv
+
