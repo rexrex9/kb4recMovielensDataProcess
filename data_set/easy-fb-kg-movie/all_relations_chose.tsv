@@ -1,0 +1,10 @@
+film.character
+character.film
+film.person
+person.film
+director.film
+film.directed_by
+writer.film
+film.written_by
+film.actor
+actor.film
