@@ -1,6 +1,14 @@
 # kb4recMovielensDataProcess
 
-### Quick Start
+## Directory
+* [Quick Start](#Quick_Start)
+* [各文件生成过程说明](#各文件生成过程说明)
+* [引用说明](#引用说明)
+* [Related Papers](#Papers)
+
+
+
+## <div id="Quick_Start"></div>Quick Start
 * 用来处理freebase, kb4rec, movielens它们数据集的项目。如果你不关心过程，
 那么目前可直接使用data_set/ml文件夹下的文件。(ml文件夹指ml-1m,ml=100k,ml-latest-small),
 如果你不需要保留freebase和movielens的具体信息的话(如电影名字等等),那么ml/trainning下的文件直接可用作训练。
@@ -38,24 +46,24 @@ paper地址：https://www.mitpressjournals.org/doi/full/10.1162/dint_a_00008<br>
 * **输入文件:**<br>
 data_set/freebase-orginal/freebase-rdf-latest.gz    原freebase文件，除了movie以外还有很多不需要的内容。<br>
 * **输出文件:**<br>
-data_set/fb-kg-movie/fb_movies.tsv  仅保留freebase中movie的内容<br>
-data_set/fb-kg-movie/names.tsv  仅保留freebase中实体名字的内容<br>
+data_set/fb-kg-movie/fb_movies.tsv  仅保留freebase中movie的内容。<br>
+data_set/fb-kg-movie/names.tsv  仅保留freebase中实体名字的内容。<br>
 注意:这个脚本在一般cpu电脑上跑完需要30个小时。
 
 2.2 fromFbMovie2easy.py<br> 
 * **输入文件:**<br>
-data_set/fb-kg-movie/fb_movies.tsv  仅保留freebase中movie的内容<br>
-data_set/fb-kg-movie/names.tsv  仅保留freebase中实体名字的内容<br>
+data_set/fb-kg-movie/fb_movies.tsv  仅保留freebase中movie的内容。<br>
+data_set/fb-kg-movie/names.tsv  仅保留freebase中实体名字的内容。<br>
 * **输出文件:**<br>
-data_set/fb-kg-movie/paris_count.tsv  统计freebase中movie数据各个关系对应头尾实体数量的文件<br>
-文件结构：[关系名, "count", 此关系下总共的三元组数量, "h", head实体的去重数量, "t", tail实体的去重数量]<br>
+data_set/fb-kg-movie/paris_count.tsv  统计freebase中movie数据各个关系对应头尾实体数量的文件。<br>
+文件结构：[关系名, "count", 此关系下总共的三元组数量, "h", head实体的去重数量, "t", tail实体的去重数量],<br>
 总共7列，打引号的部分在文件中就是呈现那个字符串，用来表示后一列的内容。<br>
-data_set/easy-fb-kg-movie/fb_movies.tsv 简化后的freebase中movie的三元组数据<br>
+data_set/easy-fb-kg-movie/fb_movies.tsv 简化后的freebase中movie的三元组数据,
 将一些冗余的节点与很冷门的关系删掉了，提高了数据的稠密性。<br>
-data_set/easy-fb-kg-movie/fb_entity_names.tsv 简化后所有实体的对应的唯一名字<br>
-data_set/easy-fb-kg-movie/fb_entity_types.tsv 简化后所有实体的对应的唯一type<br>
-data_set/easy-fb-kg-movie/paris_count.tsv 简化后数据各个关系对头尾实体数量的统计文件<br>
-data_set/easy-fb-kg-movie/all_relations.tsv 简化后数据的所有关系列表<br>
+data_set/easy-fb-kg-movie/fb_entity_names.tsv 简化后所有实体的对应的唯一名字。<br>
+data_set/easy-fb-kg-movie/fb_entity_types.tsv 简化后所有实体的对应的唯一type。<br>
+data_set/easy-fb-kg-movie/paris_count.tsv 简化后数据各个关系对头尾实体数量的统计文件。<br>
+data_set/easy-fb-kg-movie/all_relations.tsv 简化后数据的所有关系列表。<br>
 data_set/easy-fb-kg-movie/all_relations_chose.tsv 用作手动筛选关系的文件,此文件的具体作用在2.4小节中介绍。<br>
 注意:为了方便大家快速使用，该步骤的输出文件在该项目中有保存，所以大家可以跳过2.1和2.2步骤。
 
@@ -64,8 +72,8 @@ data_set/easy-fb-kg-movie/all_relations_chose.tsv 用作手动筛选关系的文
 ml*/orginal/movies*    原movieslens的movie内容文件。<br>
 ml*/orginal/ratings*    原movieslens的rating内容文件。<br>
 * **输出文件:**<br>
-ml*/easy-rec/ml_movieids.json   只剩movie id的json文件<br>
-ml*/easy-rec/ratings.tsv    干净一点的ratings文件<br>
+ml*/easy-rec/ml_movieids.json   只剩movie id的json文件。<br>
+ml*/easy-rec/ratings.tsv    干净一点的ratings文件。<br>
 注意:该脚本的目的就是把原movielens的数据集统一格式。<br>
 
 2.4 getKb4rec.py<br>
