@@ -17,7 +17,7 @@
 其中movie_index与kg_index.tsv中的entity_index,但entity_index不仅包含movie_index,还包括movie以外的实体index。
 
 ## <div id="各文件生成过程说明"></div>各文件生成过程说明
-**1. 整个项目最初的需要有:**
+**1. 整个项目最初的数据是:**
 
 1.1   freebase-rdf-latest.gz<br>
 * 这是freebase最新版本的所有数据,下载地址为：https://developers.google.com/freebase/
