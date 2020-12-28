@@ -6,8 +6,6 @@
 * [引用说明](#引用说明)
 * [Related Papers](#Papers)
 
-
-
 ## <div id="Quick_Start"></div>Quick Start
 * 用来处理freebase, kb4rec, movielens它们数据集的项目。如果你不关心过程，
 那么目前可直接使用data_set/ml文件夹下的文件。(ml文件夹指ml-1m,ml=100k,ml-latest-small),
@@ -24,7 +22,7 @@
 1.1   freebase-rdf-latest.gz<br>
 * 这是freebase最新版本的所有数据,下载地址为：https://developers.google.com/freebase/
 ![freebase dump](readme_figure/dump.jpg)
-文件有30多G，解压后近400G，但我们不需要解压，直接放在目录data_set/freebase-orginal/ 下即可。
+文件差不多30G，解压后近400G(别信上图中的数字)，但我们不需要解压，直接放在目录data_set/freebase-orginal/ 下即可。
 
 1.2   ml-orginal目录下的文件<br>
 * 即movieLens原始数据，下载地址为https://grouplens.org/datasets/movielens/
@@ -69,19 +67,47 @@ data_set/easy-fb-kg-movie/all_relations_chose.tsv 用作手动筛选关系的文
 
 2.3 fromRecOrignal2easy.py<br>
 * **输入文件:**<br>
-ml*/orginal/movies*    原movieslens的movie内容文件。<br>
-ml*/orginal/ratings*    原movieslens的rating内容文件。<br>
+data_set/ml*/orginal/movies*    原movieslens的movie内容文件。<br>
+data_set/ml*/orginal/ratings*    原movieslens的rating内容文件。<br>
 * **输出文件:**<br>
-ml*/easy-rec/ml_movieids.json   只剩movie id的json文件。<br>
-ml*/easy-rec/ratings.tsv    干净一点的ratings文件。<br>
+data_set/ml*/easy-rec/ml_movieids.json   只剩movie id的json文件。<br>
+data_set/ml*/easy-rec/ratings.tsv    干净一点的ratings文件。<br>
 注意:该脚本的目的就是把原movielens的数据集统一格式。<br>
 
 2.4 getKb4rec.py<br>
+* **输入文件:**<br>
+data_set/ml*/easy-rec/ml_movieids.json   只剩movie id的json文件。<br>
+data_set/easy-fb-kg-movie/fb_entity_names.tsv 简化后所有实体的对应的唯一名字。<br>
+data_set/easy-fb-kg-movie/fb_entity_types.tsv 简化后所有实体的对应的唯一type。<br>
+data_set/easy-fb-kg-movie/paris_count.tsv 简化后数据各个关系对头尾实体数量的统计文件。<br>
+data_set/easy-fb-kg-movie/all_relations.tsv 简化后数据的所有关系列表。<br>
+data_set/easy-fb-kg-movie/all_relations_chose.tsv 用作手动筛选关系的文件,经过此脚本生成的输出文件只会包含该文件下的关系。<br>
+* **输出文件:**<br>
+data_set/ml*/easy-fbkg/ml2fb_link.json    对应此movielens数据集下的movielens id与freebase id映射表。<br>
+data_set/ml*/easy-fbkg/kg.tsv   对应此movielens数据集的知识图谱简化数据集。<br>
+data_set/ml*/easy-fbkg/e_names_fb.tsv    对应此movielens数据集实体的名字。<br>
+data_set/ml*/easy-fbkg/e_types_fb.tsv    对应此movielens数据集实体的type。<br>
+data_set/ml*/easy-fbkg/paris_count.json    对应此movielens数据集各个关系对头尾实体数量的统计文件。<br>
 
 2.5 getKbrec4trainning.py<br>
+* **输入文件:**<br>
+data_set/ml*/easy-fbkg/ml2fb_link.json    对应此movielens数据集下的movielens id与freebase id映射表。<br>
+data_set/ml*/easy-fbkg/kg.tsv   对应此movielens数据集的知识图谱简化数据集。<br>
+data_set/ml*/easy-rec/ratings.tsv    干净一点的ratings文件。<br>
+* **输出文件:**<br>
+data_set/ml*/trainning/kg_index.tsv 极简的索引形式知识图谱三元组，索引由0开始，增量步长1，
+文件中的数字可直接作为训练模型时embeding层的索引。<br>
+data_set/ml*/trainning/rating_index.tsv 极简的索引形式用户电影评分三元组，索引由0开始，增量步长1，
+文件中的数字可直接作为训练模型时embeding层的索引。评分为原来的数字0-5变为评分flag 1 如果 (原评分>=4) 否则 0。
+<br>
+data_set/ml*/trainning-link/eid2index.json  实体的原id对应现索引的映射表，
+如果实体是movie，实体原id是movielens id，
+否则是freebase id。<br>
+data_set/ml*/trainning-link/rid2index.json  关系对应索引的映射表。<br>
+data_set/ml*/trainning-link/uid2index.json  用户id对应索引的映射表。<br>
 
 2.6 根目录下的generateKg4recMovielensFiles.py<br>
-一键执行2.3, 2.4, 2.5的操作。另外dataset/filePaths.py是记录了所有文件地址的文件。
+* 一键执行2.3, 2.4, 2.5的操作。另外dataset/filePaths.py是记录了所有文件地址的文件。
 通过修改该文件下的全局常量ROOT_DIR_NAME,可指定处理ml-1m,ml-100k或者ml-latest-small的甚至是大家新放进来的movielens数据集。
 
 
