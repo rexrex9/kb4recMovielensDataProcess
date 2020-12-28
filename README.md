@@ -98,8 +98,7 @@ data_set/ml*/easy-rec/ratings.tsv    干净一点的ratings文件。<br>
 data_set/ml*/trainning/kg_index.tsv 极简的索引形式知识图谱三元组，索引由0开始，增量步长1，
 文件中的数字可直接作为训练模型时embeding层的索引。<br>
 data_set/ml*/trainning/rating_index.tsv 极简的索引形式用户电影评分三元组，索引由0开始，增量步长1，
-文件中的数字可直接作为训练模型时embeding层的索引。评分为原来的数字0-5变为评分flag 1 如果 (原评分>=4) 否则 0。
-<br>
+文件中的数字可直接作为训练模型时embeding层的索引。评分为原来的数字0-5变为评分flag 1 如果 (原评分>=4) 否则 0。<br>
 data_set/ml*/trainning-link/eid2index.json  实体的原id对应现索引的映射表，
 如果实体是movie，实体原id是movielens id，
 否则是freebase id。<br>
