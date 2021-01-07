@@ -14,12 +14,12 @@
 * kg_index.tsv 是知识图谱三元组数据。文件结构为entity_index, relation_index, entity_index。
 
 * rating_index.tsv是用户评分三元组数据。文件结构为user_index, movie_index, rating_flag。
-其中movie_index与kg_index.tsv中的entity_index,但entity_index不仅包含movie_index,还包括movie以外的实体index。
+其中movie_index与kg_index.tsv中的entity_index重叠,但entity_index不仅包含movie_index,还包括movie以外的实体index。
 
 ## <div id="各文件生成过程说明"></div>各文件生成过程说明
 **1. 整个项目最初的数据是:**
 
-1.1   freebase-rdf-latest.gz<br>
+- 1.1   freebase-rdf-latest.gz<br>
 * 这是freebase最新版本的所有数据,下载地址为：https://developers.google.com/freebase/
 ![freebase dump](readme_figure/dump.jpg)
 文件差不多30G，解压后近400G(别信上图中的数字)，但我们不需要解压，直接放在目录data_set/freebase-orginal/ 下即可。
