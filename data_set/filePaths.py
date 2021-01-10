@@ -1,6 +1,6 @@
 import os
 
-ROOT_DIR_NAME='ml-1m'
+ROOT_DIR_NAME='ml-100k'
 
 class FBOrginal():
     __BASE = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'freebase-orginal')
@@ -50,6 +50,7 @@ class RecData():
         dict[RecData.Trainning]={}
         dict[RecData.Trainning]['kg_index'] = os.path.join(TrainningDir,'kg_index.tsv')
         dict[RecData.Trainning]['rating_index'] = os.path.join(TrainningDir,'rating_index.tsv')
+        dict[RecData.Trainning]['rating_index_5'] = os.path.join(TrainningDir, 'rating_index_5.tsv')
 
         TrainningLinkDir = os.path.join(rootDir, RecData.TrainningLink)
         dict[RecData.TrainningLink] = {}

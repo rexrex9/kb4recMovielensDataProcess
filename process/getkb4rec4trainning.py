@@ -14,6 +14,7 @@ Easy_rating_path=MoviePathDict['easy-rec']['ratings']
 # out
 Kg_index = MoviePathDict[fp.RecData.Trainning]['kg_index']
 Rating_index = MoviePathDict[fp.RecData.Trainning]['rating_index']
+Rating_index_5 = MoviePathDict[fp.RecData.Trainning]['rating_index_5']
 
 Eid2index_json = MoviePathDict[fp.RecData.TrainningLink]['eid2index']
 Rid2index_json = MoviePathDict[fp.RecData.TrainningLink]['rid2index']
@@ -24,7 +25,6 @@ def getMid2EidDict():
     mid2EidDict = osUtils.getJson(Link_json)
     eid2midDict = {mid2EidDict[k]: k for k in mid2EidDict}
     return mid2EidDict, eid2midDict
-
 
 def dealKg():
     mid2EidDict, eid2midDict = getMid2EidDict()
@@ -73,6 +73,7 @@ def dealRatings():
     eid2index = osUtils.getJson(Eid2index_json)
     uid2index = dict()
     fw = open(Rating_index, 'w+')
+    fw5 = open(Rating_index_5,'w+')
     with open(Easy_rating_path) as f:
         for line in tqdm(f.readlines()):
             lines = line.strip().split()
@@ -81,6 +82,8 @@ def dealRatings():
             uid = lines[0]
             innerUid = int(uid) - 1
             innerIid = eid2index[eid]
+            fw5.write('\t'.join([str(innerUid), str(innerIid), lines[2]]))
+            fw5.write('\n')
             rating = 1 if int(lines[2]) >= 4 else 0
             fw.write('\t'.join([str(innerUid), str(innerIid), str(rating)]))
             fw.write('\n')
@@ -96,7 +99,7 @@ def dealRatings():
                 else:
                     user_history_items[str(innerUid)] = [innerIid]
     fw.close()
-
+    fw5.close()
     osUtils.dumpJson(uid2index, Uid2index_json)
 
 

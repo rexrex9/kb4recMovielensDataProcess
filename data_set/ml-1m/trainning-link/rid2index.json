@@ -1,1 +1,1 @@
-{"director.film": 0, "film.character": 1, "person.film": 2, "film.directed_by": 3, "writer.film": 4, "film.person": 5, "character.film": 6, "film.actor": 7, "actor.film": 8, "film.written_by": 9}
+{"film.character": 0, "writer.film": 1, "film.directed_by": 2, "film.actor": 3, "film.person": 4, "film.written_by": 5, "actor.film": 6, "character.film": 7, "person.film": 8, "director.film": 9}
